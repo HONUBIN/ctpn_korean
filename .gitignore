@@ -1,4 +1,4 @@
-data/dataset/
+data/
 __pycache__/
 cache/
 pretrain/
