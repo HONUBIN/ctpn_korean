@@ -30,10 +30,10 @@ python ./main/demo.py
 - Download the dataset we prepared from [google drive](https://drive.google.com/file/d/1npxA_pcEvIa4c42rho1HgnfJ7tamThSy/view?usp=sharing) or [baidu yun](https://pan.baidu.com/s/1nbbCZwlHdgAI20_P9uw9LQ). put the downloaded data in data/dataset/mlt, then start the training.
 ## prepare data(using your own data)
 - Also, you can prepare your own dataset according to the following steps. 
-- Prepare your own dataset(images) and annotation files(.txt files)
+- Prepare your own dataset(images) in (your_path)/image and annotation files(.txt files) in (your_path)/label
 (Annotation file format can be found in [gt_img_859.txt](https://github.com/HONUBIN/ctpn_korean/tree/master/data/readme/gt_img_859.txt). The format is x1,y1(left top),x2,y2(right top),x3,y3(right bottom),x4,y4(left botton),language tag,object tag.)
 - Annotation file's name must be gt_(image).txt (if image file's name is img_1 than annotation file must be gt_img_1.txt.)
-- Modify the DATA_FOLDER in utils/prepare/split_label.py according to your dataset. And run split_label.py in the root
+- Modify the DATA_FOLDER in utils/prepare/split_label.py according to your dataset(your_path). And run split_label.py in the root
 ```shell
 python ./utils/prepare/split_label.py
 ```
