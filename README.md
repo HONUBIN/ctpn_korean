@@ -47,3 +47,4 @@ python ./utils/prepare/split_label.py
 python ./main/train.py
 ```
 ***
+- No train logs displayed until the end of training in Window-10(linux is fine)
