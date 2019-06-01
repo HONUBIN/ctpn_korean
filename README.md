@@ -31,7 +31,7 @@ python ./main/demo.py
 ## prepare data(using your own data)
 - Also, you can prepare your own dataset according to the following steps. 
 - Prepare your own dataset(images) and annotation files(.txt files)
-(Annotation file format can be found in [gt_img_859.txt](https://github.com/eragonruan/text-detection-ctpn/blob/banjin-dev/data/readme/gt_img_859.txt).)
+(Annotation file format can be found in [gt_img_859.txt](https://github.com/HONUBIN/ctpn_korean/tree/master/data/readme/gt_img_859.txt).)
 - Modify the DATA_FOLDER and OUTPUT in utils/prepare/split_label.py according to your dataset. And run split_label.py in the root
 ```shell
 python ./utils/prepare/split_label.py
