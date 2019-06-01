@@ -42,7 +42,7 @@ python ./utils/prepare/split_label.py
 
 ## train 
 - Modify parameters(learning rate, max_steps(=epoch), ...) in main/train.py(line 13-24)
-- Because pre-trained weight is saved at 50000, max_steps must be larger than 50000(The model provided in checkpoints_mlt is trained on GTX1070 for 50k iters. It takes about 0.25s per iter. So it will takes about 3.5 hours to finished 50k iterations.)
+- Because pre-trained weight was saved at 50000, max_steps must be larger than 50000(The model provided in checkpoints_mlt is trained on GTX1070 for 50k iters. It takes about 0.25s per iter. So it will takes about 3.5 hours to finished 50k iterations.)
 ```shell
 python ./main/train.py
 ```
