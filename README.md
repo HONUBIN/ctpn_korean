@@ -10,21 +10,21 @@ cd utils/bbox
 chmod +x make.sh
 ./make.sh
 ```
-- It will generate a nms.so and a bbox.so in current folder.
+- If demo or train command(shown below) doesn't work than please setup again
 ***
 # demo
-- follow setup to build the library 
-- download the ckpt file from [googl drive](https://drive.google.com/file/d/1HcZuB_MHqsKhKEKpfF1pEU85CYy4OlWO/view?usp=sharing) or [baidu yun](https://pan.baidu.com/s/1BNHt_9fiqRPGmEXPaxaFXw)
-- put checkpoints_mlt/ in text-detection-ctpn/
-- put your images in data/demo, the results will be saved in data/res, and run demo in the root 
+- Follow setup to build the library 
+- Download the ckpt file from [googl drive](https://drive.google.com/file/d/1HcZuB_MHqsKhKEKpfF1pEU85CYy4OlWO/view?usp=sharing) or [baidu yun](https://pan.baidu.com/s/1BNHt_9fiqRPGmEXPaxaFXw)
+- Put checkpoints_mlt/ in text-detection-ctpn/
+- Put your images in data/demo, the results will be saved in data/res, and run demo in the root 
 ```shell
 python ./main/demo.py
 ```
 ***
 # training
-- follow setup to build the library 
-- download the ckpt file from [googl drive](https://drive.google.com/file/d/1HcZuB_MHqsKhKEKpfF1pEU85CYy4OlWO/view?usp=sharing) or [baidu yun](https://pan.baidu.com/s/1BNHt_9fiqRPGmEXPaxaFXw)
-- put checkpoints_mlt/ in text-detection-ctpn/
+- Follow setup to build the library 
+- Download the ckpt file from [googl drive](https://drive.google.com/file/d/1HcZuB_MHqsKhKEKpfF1pEU85CYy4OlWO/view?usp=sharing) or [baidu yun](https://pan.baidu.com/s/1BNHt_9fiqRPGmEXPaxaFXw)
+- Put checkpoints_mlt/ in text-detection-ctpn/
 - Download the pre-trained model of VGG net and put it in data/vgg_16.ckpt. you can download it from [tensorflow/models](https://github.com/tensorflow/models/tree/1af55e018eebce03fb61bba9959a04672536107d/research/slim)
 ## prepare data(using original data)
 - Download the dataset we prepared from [google drive](https://drive.google.com/file/d/1npxA_pcEvIa4c42rho1HgnfJ7tamThSy/view?usp=sharing) or [baidu yun](https://pan.baidu.com/s/1nbbCZwlHdgAI20_P9uw9LQ). put the downloaded data in data/dataset/mlt, then start the training.
@@ -36,7 +36,7 @@ python ./main/demo.py
 ```shell
 python ./utils/prepare/split_label.py
 ```
-- it will generate the prepared data in data/dataset/
+- It will generate the prepared data in data/dataset/
 
 
 ## train 
