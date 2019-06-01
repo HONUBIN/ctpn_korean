@@ -60,7 +60,7 @@ for im_fn in tqdm(im_fns):
             poly = orderConvex(poly)
             polys.append(poly)
 
-            # cv.polylines(re_im, [poly.astype(np.int32).reshape((-1, 1, 2))], True,color=(0, 255, 0), thickness=2)
+            #cv.polylines(re_im, [poly.astype(np.int32).reshape((-1, 1, 2))], True,color=(0, 255, 0), thickness=2)
 
         res_polys = []
         for poly in polys:
@@ -69,8 +69,8 @@ for im_fn in tqdm(im_fns):
                 continue
 
             res = shrink_poly(poly)
-            # for p in res:
-            #    cv.polylines(re_im, [p.astype(np.int32).reshape((-1, 1, 2))], True, color=(0, 255, 0), thickness=1)
+            #for p in res:
+                #cv.polylines(re_im, [p.astype(np.int32).reshape((-1, 1, 2))], True, color=(0, 255, 0), thickness=1)
 
             res = res.reshape([-1, 4, 2])
             for r in res:
@@ -86,10 +86,10 @@ for im_fn in tqdm(im_fns):
             for p in res_polys:
                 line = ",".join(str(p[i]) for i in range(4))
                 f.writelines(line + "\r\n")
-                # for p in res_polys:
-                #    cv.rectangle(re_im,(p[0],p[1]),(p[2],p[3]),color=(0,0,255),thickness=1)
+                #for p in res_polys:
+                    #cv.rectangle(re_im,(p[0],p[1]),(p[2],p[3]),color=(0,0,255),thickness=1)
 
-                # cv.imshow("demo",re_im)
-                # cv.waitKey(0)
+        #cv.imshow("demo",re_im)
+        #cv.waitKey(0)
     except:
         print("Error processing {}".format(im_fn))
