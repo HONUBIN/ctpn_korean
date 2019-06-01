@@ -31,16 +31,16 @@ python ./main/demo.py
 ## prepare data(using your own data)
 - Also, you can prepare your own dataset according to the following steps. 
 - Prepare your own dataset(images) and annotation files(.txt files)
-(Annotation file format can be found in [gt_img_859.txt](https://github.com/HONUBIN/ctpn_korean/tree/master/data/readme/gt_img_859.txt).)
-- Modify the DATA_FOLDER and OUTPUT in utils/prepare/split_label.py according to your dataset. And run split_label.py in the root
+(Annotation file format can be found in [gt_img_859.txt](https://github.com/HONUBIN/ctpn_korean/tree/master/data/readme/gt_img_859.txt). The format is x1,y1(left top),x2,y2(right top),x3,y3(right bottom),x4,y4(left botton),language tag,object tag.)
+- Modify the DATA_FOLDER in utils/prepare/split_label.py according to your dataset. And run split_label.py in the root
 ```shell
 python ./utils/prepare/split_label.py
 ```
-- It will generate the prepared data in data/dataset/
+- It will generate the prepared data in data/dataset/mlt
 
 
 ## train 
-- Modify parameters(learning rate, max_steps(=epoch), ...) of file 'main/train.py'(line 13-24)
+- Modify parameters(learning rate, max_steps(=epoch), ...) in main/train.py(line 13-24)
 - Because pre-trained weight is saved at 50000, max_steps must be larger than 50000(The model provided in checkpoints_mlt is trained on GTX1070 for 50k iters. It takes about 0.25s per iter. So it will takes about 3.5 hours to finished 50k iterations.)
 ```shell
 python ./main/train.py
