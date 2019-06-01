@@ -85,7 +85,7 @@ for im_fn in tqdm(im_fns):
         with open(os.path.join(OUTPUT, "label", bfn) + ".txt", "w") as f:
             for p in res_polys:
                 line = ",".join(str(p[i]) for i in range(4))
-                f.writelines(line + "\r\n")
+                f.writelines(line + "\n")
                 #for p in res_polys:
                     #cv.rectangle(re_im,(p[0],p[1]),(p[2],p[3]),color=(0,0,255),thickness=1)
 
