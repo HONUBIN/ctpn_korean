@@ -6,9 +6,9 @@ import numpy as np
 from tqdm import tqdm
 
 sys.path.append(os.getcwd())
-from utils.prepare.utils import orderConvex, shrink_poly
+from utils import orderConvex, shrink_poly
 
-DATA_FOLDER = "/media/D/DataSet/mlt_selected/"
+DATA_FOLDER = "data/dataset/own/"
 OUTPUT = "data/dataset/mlt/"
 MAX_LEN = 1200
 MIN_LEN = 600
