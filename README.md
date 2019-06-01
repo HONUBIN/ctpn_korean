@@ -32,6 +32,7 @@ python ./main/demo.py
 - Also, you can prepare your own dataset according to the following steps. 
 - Prepare your own dataset(images) and annotation files(.txt files)
 (Annotation file format can be found in [gt_img_859.txt](https://github.com/HONUBIN/ctpn_korean/tree/master/data/readme/gt_img_859.txt). The format is x1,y1(left top),x2,y2(right top),x3,y3(right bottom),x4,y4(left botton),language tag,object tag.)
+- Annotation file's name must be gt_(image).txt (if image file's name is img_1 than annotation file must be gt_img_1.txt.)
 - Modify the DATA_FOLDER in utils/prepare/split_label.py according to your dataset. And run split_label.py in the root
 ```shell
 python ./utils/prepare/split_label.py
