@@ -14,7 +14,7 @@ from utils.rpn_msr.proposal_layer import proposal_layer
 from utils.text_connector.detectors import TextDetector
 
 tf.app.flags.DEFINE_string('test_data_path', 'data/demo/', '')
-tf.app.flags.DEFINE_string('output_path', 'data/res/', '')
+tf.app.flags.DEFINE_string('output_path', 'data/res_trained/', '')
 tf.app.flags.DEFINE_string('gpu', '0', '')
 tf.app.flags.DEFINE_string('checkpoint_path', 'checkpoints_mlt/', '')
 FLAGS = tf.app.flags.FLAGS
@@ -50,6 +50,52 @@ def resize_image(img):
     re_im = cv2.resize(img, (new_w, new_h), interpolation=cv2.INTER_LINEAR)
     return re_im, (new_h / img_size[0], new_w / img_size[1])
 
+
+def ifOverlap(box1, box2):
+    matrix = [[0 for i in range(1201)] for i in range(1201)]
+    for i in range(box1[0], box1[2]+1):
+        for j in range(box1[3], box1[5]+1):
+            matrix[i][j] += 1
+    for i in range(box2[0], box2[2]+1):
+        for j in range(box2[3], box2[5]+1):
+            if matrix[i][j] == 1:
+                return True
+
+    return False
+
+def merge(boxes):
+    box = []
+    overlap = False
+    finish = False
+    while(not(finish)):
+        for i,box1 in enumerate(boxes):
+            if overlap:
+                overlap = False
+                break
+            for j, box2 in enumerate(boxes):
+                if overlap:
+                    break
+                if i == j:
+                    continue
+                if ifOverlap(box1, box2):
+                    x1 = box1[0] if box1[0] <= box2[0] else box2[0]
+                    x2 = box1[2] if box1[2] >= box2[2] else box2[2]
+                    x3 = box1[4] if box1[4] >= box2[4] else box2[4]
+                    x4 = box1[6] if box1[6] <= box2[6] else box2[6]
+                    y1 = box1[1] if box1[1] <= box2[1] else box2[1]
+                    y2 = box1[3] if box1[3] <= box2[3] else box2[3]
+                    y3 = box1[5] if box1[5] >= box2[5] else box2[5]
+                    y4 = box1[7] if box1[7] >= box2[7] else box2[7]
+                    box = [x1, y1, x2, y2, x3, y3, x4, y4, 0]
+                    del boxes[i]
+                    del boxes[j-1]
+                    boxes.append(box)
+                    overlap = True
+
+            if i == len(boxes)-1 and not(overlap):
+                finish = True
+
+    return boxes
 
 def main(argv=None):
     if os.path.exists(FLAGS.output_path):
@@ -99,11 +145,23 @@ def main(argv=None):
                 textdetector = TextDetector(DETECT_MODE='H')
                 boxes = textdetector.detect(textsegs, scores[:, np.newaxis], img.shape[:2])
                 boxes = np.array(boxes, dtype=np.int)
-
                 cost_time = (time.time() - start)
                 print("cost time: {:.2f}s".format(cost_time))
 
+                increment = 10
                 for i, box in enumerate(boxes):
+                    #box[0] -= increment
+                    box[1] -= increment
+                    #box[2] += increment
+                    box[3] -= increment
+                    #box[4] += increment
+                    box[5] += increment
+                    #box[6] -= increment
+                    box[7] += increment
+                boxes2 = boxes.tolist()
+                boxes2 = merge(boxes2)
+                boxes2 = np.array(boxes2, dtype=np.int)
+                for i, box in enumerate(boxes2):
                     cv2.polylines(img, [box[:8].astype(np.int32).reshape((-1, 1, 2))], True, color=(0, 255, 0),
                                   thickness=2)
                 img = cv2.resize(img, None, None, fx=1.0 / rh, fy=1.0 / rw, interpolation=cv2.INTER_LINEAR)
@@ -111,7 +169,7 @@ def main(argv=None):
 
                 with open(os.path.join(FLAGS.output_path, os.path.splitext(os.path.basename(im_fn))[0]) + ".txt",
                           "w") as f:
-                    for i, box in enumerate(boxes):
+                    for i, box in enumerate(boxes2):
                         line = ",".join(str(box[k]) for k in range(8))
                         line += "," + str(scores[i]) + "\r\n"
                         f.writelines(line)
