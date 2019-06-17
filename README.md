@@ -15,7 +15,7 @@ chmod +x make.sh
 # demo
 - Follow setup to build the library 
 - Download the ckpt file from [googl drive](https://drive.google.com/file/d/1HcZuB_MHqsKhKEKpfF1pEU85CYy4OlWO/view?usp=sharing) or [baidu yun](https://pan.baidu.com/s/1BNHt_9fiqRPGmEXPaxaFXw)
-- Put checkpoints_mlt/ in text-detection-ctpn/
+- Put checkpoints_mlt/ in ctpn_korean/
 - Put your images in data/demo, the results will be saved in data/res, and run demo in the root 
 ```shell
 python ./main/demo.py
@@ -24,20 +24,33 @@ python ./main/demo.py
 # training
 - Follow setup to build the library 
 - Download the ckpt file from [googl drive](https://drive.google.com/file/d/1HcZuB_MHqsKhKEKpfF1pEU85CYy4OlWO/view?usp=sharing) or [baidu yun](https://pan.baidu.com/s/1BNHt_9fiqRPGmEXPaxaFXw)
-- Put checkpoints_mlt/ in text-detection-ctpn/
+- Put checkpoints_mlt/ in ctpn_korean/
 - Download the pre-trained model of VGG net and put it in data/vgg_16.ckpt. you can download it from [tensorflow/models](https://github.com/tensorflow/models/tree/1af55e018eebce03fb61bba9959a04672536107d/research/slim)
-## prepare data(using original data)
-- Download the dataset we prepared from [google drive](https://drive.google.com/file/d/1npxA_pcEvIa4c42rho1HgnfJ7tamThSy/view?usp=sharing) or [baidu yun](https://pan.baidu.com/s/1nbbCZwlHdgAI20_P9uw9LQ). put the downloaded data in data/dataset/mlt, then start the training.
+## prepare data(using korean subtitle data)
+- Download the dataset we prepared from [google drive](https://drive.google.com/file/d/1ATGwsAN1HOSE6X6EDw0sXaZAQEQD8rZr/view?usp=sharing). put the downloaded data in data/dataset/mlt, then start the training.
 ## prepare data(using your own data)
 - Also, you can prepare your own dataset according to the following steps. 
-- Prepare your own dataset(images) in (your_path)/image and annotation files(.txt files) in (your_path)/label
-(Annotation file format can be found in [gt_img_859.txt](https://github.com/HONUBIN/ctpn_korean/tree/master/data/readme/gt_img_859.txt). The format is x1,y1(left top),x2,y2(right top),x3,y3(right bottom),x4,y4(left bottom),language tag,object tag.)
-- Annotation file's name must be gt_(image).txt (if image file's name is img_1 than annotation file must be gt_img_1.txt.)
-- Modify the DATA_FOLDER in utils/prepare/split_label.py according to your dataset(your_path). And run split_label.py in the root
-```shell
-python ./utils/prepare/split_label.py
-```
-- It will generate the prepared data in data/dataset/mlt
+    1. Prepare your own dataset(images) in data/dataset/own/image
+    2. Prepare annotation files(.txt files) in data/dataset/own/label (Annotation file format can be found in [gt_img_859.txt](https://github.com/HONUBIN/ctpn_korean/tree/master/data/readme/gt_img_859.txt). The format is x1,y1(left top),x2,y2(right top),x3,y3(right bottom),x4,y4(left bottom),language tag,object tag. Annotation file's name must be gt_(image).txt)
+    3. You can make annotation files by following steps
+        1. Using [Vgg Image Annotator 1.0.1](https://www.robots.ox.ac.uk/~vgg/software/via/via-1.0.1.html)
+        2. Load images (Image - Load or Add images)
+        3. Boxing objects (Mouse dragging)
+        4. Save json file to data/dataset/own/label (Annotation - Save as Json, do not change file name)
+        5. Convert json to train.txt
+            ```shell
+            python ./data/dataset/own/label/parser.py
+            ```
+        6. Convert train.txt to annotation files (gt_(image).txt)
+            ```shell
+            python ./data/dataset/own/label/change_cordinate.py
+            ```
+        
+    4. Modify the DATA_FOLDER in utils/prepare/split_label.py to data/dataset/own/. And run split_label.py in the root
+        ```shell
+        python ./utils/prepare/split_label.py
+        ```
+        - It will generate the prepared data in data/dataset/mlt
 
 
 ## train 
