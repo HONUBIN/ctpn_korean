@@ -26,8 +26,7 @@ python ./main/demo.py
 - Download the ckpt file from [googl drive](https://drive.google.com/file/d/1HcZuB_MHqsKhKEKpfF1pEU85CYy4OlWO/view?usp=sharing) or [baidu yun](https://pan.baidu.com/s/1BNHt_9fiqRPGmEXPaxaFXw)
 - Put checkpoints_mlt/ in ctpn_korean/
 - Download the pre-trained model of VGG net and put it in data/vgg_16.ckpt. you can download it from [tensorflow/models](https://github.com/tensorflow/models/tree/1af55e018eebce03fb61bba9959a04672536107d/research/slim)
-## prepare data(using korean subtitle data)
-- Download the dataset we prepared from [google drive](https://drive.google.com/file/d/1ATGwsAN1HOSE6X6EDw0sXaZAQEQD8rZr/view?usp=sharing). put the downloaded data in data/dataset/mlt, then start the training.
+
 ## prepare data(using your own data)
 - Also, you can prepare your own dataset according to the following steps. 
     1. Prepare your own dataset(images) in data/dataset/own/image
