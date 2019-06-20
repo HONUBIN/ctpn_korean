@@ -27,6 +27,9 @@ python ./main/demo.py
 - Put checkpoints_mlt/ in ctpn_korean/
 - Download the pre-trained model of VGG net and put it in data/vgg_16.ckpt. you can download it from [tensorflow/models](https://github.com/tensorflow/models/tree/1af55e018eebce03fb61bba9959a04672536107d/research/slim)
 
+## prepare data(using korean subtitle data)
+- Put mlt directory to data/dataset/
+
 ## prepare data(using your own data)
 - Also, you can prepare your own dataset according to the following steps. 
     1. Prepare your own dataset(images) in data/dataset/own/image
